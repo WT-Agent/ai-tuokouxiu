@@ -128,6 +128,14 @@ textarea:focus {
   gap: 0.5rem;
   overflow-x: auto;
   padding-bottom: 0.25rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.style-selector::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .style-option {
