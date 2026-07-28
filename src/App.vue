@@ -1,5 +1,9 @@
 <template>
   <div class="app-container">
+    <!-- 成功提示 -->
+    <div v-if="copied" class="top-success-toast">
+      复制成功
+    </div>
     <!-- 常驻悬浮分享按钮 -->
     <button class="floating-share-btn" @click="showShareGuide = true">
       <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -13,11 +17,6 @@
     </button>
 
     <header>
-      <div class="user-status-bar" style="margin-bottom: 0.75rem; font-size: 0.8rem; text-align: center;">
-        <span v-if="isLoggedIn" class="status-badge logged-in" style="background: rgba(192, 132, 252, 0.15); color: #c084fc; padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(192, 132, 252, 0.3);">
-          已登录 (每日 15 次额度 · 今日已用: {{ authUsesCount }}/15)
-        </span>
-      </div>
       <h1>{{ appTitle }}</h1>
       <p>专业生成 · 智能诊断 · 5大指标评估 · 极简自适应体验</p>
     </header>
