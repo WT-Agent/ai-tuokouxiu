@@ -1,10 +1,10 @@
 {
-  "name": "ai-tuokouxiu",
+  "name": "ai-template-app",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

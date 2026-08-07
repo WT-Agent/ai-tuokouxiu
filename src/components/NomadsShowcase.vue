@@ -2,8 +2,8 @@
   <section class="nomads-showcase-section">
     <div class="showcase-header">
       <div class="header-left">
-        <h2 class="showcase-title">脱口秀段子与爆笑金句专家实战模板库</h2>
-        <p class="showcase-subtitle">精选典型场景与实战模版，点击“一键套用”快速体验</p>
+        <h2 class="showcase-title">实战案例与模板库 (Nomads Showcase)</h2>
+        <p class="showcase-subtitle">精选高频实战场景，点击“一键套用”快速生成高质量结果</p>
       </div>
       <span class="showcase-badge">已收录 {{ showcaseItems.length }} 个实战模板</span>
     </div>
@@ -16,7 +16,7 @@
       >
         <div class="card-header">
           <span class="scenario-tag">{{ item.tag }}</span>
-          <span class="usage-count">{{ item.usageCount }} 次生成</span>
+          <span class="usage-count">{{ item.usageCount }} 次应用</span>
         </div>
 
         <div class="card-content">
@@ -41,8 +41,13 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
+const props = defineProps<{
+  appTitle?: string;
+  isImage?: boolean;
+}>();
+
 const emit = defineEmits<{
-  (e: 'apply-template', payload: { prompt: string }): void;
+  (e: 'apply-template', payload: { prompt: string; style?: string }): void;
 }>();
 
 export interface ShowcaseItem {
@@ -50,57 +55,105 @@ export interface ShowcaseItem {
   tag: string;
   title: string;
   prompt: string;
+  style?: string;
   usageCount: string;
 }
 
-const showcaseItems = computed<ShowcaseItem[]>(() => [
-  {
-    id: 'ai-tuokouxiu-1',
-    tag: '职场吐槽',
-    title: '“开会 2 小时只为了确定PPT颜色”脱口秀',
-    prompt: '创作 3 分钟脱口秀段子，吐槽形式主义开会与 PPT 画饼，设计 3 个爆笑 Punchline。',
-    usageCount: '58.2k'
-  },
-  {
-    id: 'ai-tuokouxiu-2',
-    tag: '相亲尴尬',
-    title: '春节回家被安排 5 场相亲的爆笑体验',
-    prompt: '撰写相亲主题脱口秀，描述相亲对象奇葩言行，融入肢体 Act-out 模仿。',
-    usageCount: '52.4k'
-  },
-  {
-    id: 'ai-tuokouxiu-3',
-    tag: '减肥自嘲',
-    title: '“办了健身卡只去洗过澡”自嘲段子',
-    prompt: '创作关于办健身卡、吃减脂餐的自嘲喜剧段子，剖析当代人伪自律的搞笑心理。',
-    usageCount: '46.1k'
-  },
-  {
-    id: 'ai-tuokouxiu-4',
-    tag: '代沟冲突',
-    title: '父母用“为你好”绑架生活的脱口秀',
-    prompt: '撰写代沟主题脱口秀，吐槽父母养生朋友圈与相亲角，用幽默解构代沟沉重。',
-    usageCount: '40.8k'
-  },
-  {
-    id: 'ai-tuokouxiu-5',
-    tag: '现场控场',
-    title: '脱口秀现场冷场与观众互动 Crowd Work',
-    prompt: '总结 5 个脱口秀现场互动金句，针对观众不说话或乱接话提供机智救场方案。',
-    usageCount: '35.1k'
-  },
-  {
-    id: 'ai-tuokouxiu-6',
-    tag: '梗图创作',
-    title: '如何使用“比喻梗”与“谐音梗”写段子',
-    prompt: '讲解脱口秀段子核心公式，示范如何用夸张比喻把平淡生活小事变成搞笑金句。',
-    usageCount: '30.6k'
+// 模拟实战案例数据库（支持根据文本/图像类及应用主题切换）
+const showcaseItems = computed<ShowcaseItem[]>(() => {
+  if (props.isImage) {
+    return [
+      {
+        id: 'img-1',
+        tag: '写真肖像',
+        title: '商务精英形象照',
+        prompt: '高端写字楼背景，身穿深蓝色西装，眼神自信专注，赛博朋克光影效果',
+        style: '<photography>',
+        usageCount: '18.5k'
+      },
+      {
+        id: 'img-2',
+        tag: '概念插画',
+        title: '未来科幻城市海报',
+        prompt: '霓虹灯光的赛博朋克立体城市，飞行汽车，高品质概念插画，8k分辨率',
+        style: '<illustration>',
+        usageCount: '24.1k'
+      },
+      {
+        id: 'img-3',
+        tag: '二次元动漫',
+        title: '日系国潮动漫角色',
+        prompt: '穿着现代汉服的国风少年，手持纸伞，水彩漫感，唯美光感与柔光滤镜',
+        style: '<anime>',
+        usageCount: '15.9k'
+      },
+      {
+        id: 'img-4',
+        tag: '水彩艺术',
+        title: '治愈系自然风景画',
+        prompt: '晨雾中的森林湖泊，阳光穿透树林，水彩渐变质感，温馨治愈风格',
+        style: '<watercolor>',
+        usageCount: '12.3k'
+      }
+    ];
+  } else {
+    return [
+      {
+        id: 'text-1',
+        tag: '职场总结',
+        title: '周报 OKR 成果提炼',
+        prompt: '本周完成了核心模块优化与线上异常排查，请帮我梳理为具备量化指标的 OKR 汇报文案',
+        style: '专业干练，结果导向',
+        usageCount: '32.8k'
+      },
+      {
+        id: 'text-2',
+        tag: '高情商沟通',
+        title: '拒绝不合理加班话术',
+        prompt: '领导在周末突然布置非紧急任务，如何高情商、委婉且有理有据地推迟到工作日处理？',
+        style: '高情商，委婉，有情调',
+        usageCount: '28.4k'
+      },
+      {
+        id: 'text-3',
+        tag: '短视频文案',
+        title: '知识干货吸睛开头',
+        prompt: '准备制作一条关于高效学习法的短视频，设计 3 个能在前 3 秒留住用户的爆款口播开头',
+        style: '专业干练，结果导向',
+        usageCount: '45.1k'
+      },
+      {
+        id: 'text-4',
+        tag: '商务公文',
+        title: '跨部门协同申请函',
+        prompt: '因项目上线需要研发部门配合联调，撰写一份正式、严谨且明确时间节点的协同申请书',
+        style: '专业干练，结果导向',
+        usageCount: '19.7k'
+      },
+      {
+        id: 'text-5',
+        tag: '小红书种草',
+        title: '实战干货笔记排版',
+        prompt: '分享 5 个提升日常工作效率的文字工具，语言亲切，搭配吸引人的标题与 Emoji 排版',
+        style: '高情商，委婉，有情调',
+        usageCount: '36.2k'
+      },
+      {
+        id: 'text-6',
+        tag: '学术润色',
+        title: '论文摘要与结论重构',
+        prompt: '将以下粗糙的研究结论重写为学术规范、逻辑严密且无语法语病的论文摘要总结',
+        style: '专业干练，结果导向',
+        usageCount: '22.0k'
+      }
+    ];
   }
-]);
+});
 
 function applyTemplate(item: ShowcaseItem) {
   emit('apply-template', {
-    prompt: item.prompt
+    prompt: item.prompt,
+    style: item.style
   });
 }
 </script>

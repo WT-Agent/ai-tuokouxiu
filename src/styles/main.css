@@ -1,16 +1,34 @@
 :root {
-  --bg-gradient: linear-gradient(135deg, #080710 0%, #0f0e1c 50%, #020108 100%);
-  --card-bg: rgba(255, 255, 255, 0.03);
+  --bg-gradient: linear-gradient(135deg, hsl(230, 24%, 6%) 0%, hsl(230, 22%, 11%) 50%, hsl(230, 30%, 4%) 100%);
+  --card-bg: hsla(230, 22%, 11%, 0.65);
   --card-blur: blur(16px);
-  --card-border: rgba(255, 255, 255, 0.06);
-  --primary-color: #6366f1;
-  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-  --primary-hover: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
-  --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
-  --accent-color: #ec4899;
-  --success-color: #10b981;
+  --card-border: hsla(230, 20%, 25%, 0.35);
+  --primary-color: hsl(245, 80%, 65%);
+  --primary-gradient: linear-gradient(135deg, hsl(245, 80%, 65%) 0%, hsl(275, 85%, 65%) 100%);
+  --primary-hover: linear-gradient(135deg, hsl(245, 80%, 55%) 0%, hsl(275, 85%, 55%) 100%);
+  --text-primary: hsl(230, 100%, 97%);
+  --text-secondary: hsl(230, 12%, 80%);
+  --accent-color: hsl(330, 85%, 60%);
+  --success-color: hsl(145, 80%, 50%);
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+[data-theme="light"] {
+  --bg-gradient: linear-gradient(135deg, hsl(210, 20%, 98%) 0%, hsl(210, 15%, 93%) 100%);
+  --card-bg: hsla(0, 0%, 100%, 0.85);
+  --card-border: hsla(220, 15%, 85%, 0.6);
+  --text-primary: hsl(222, 47%, 11%);
+  --text-secondary: hsl(215, 25%, 35%);
+  --primary-gradient: linear-gradient(135deg, hsl(222, 80%, 55%) 0%, hsl(250, 75%, 60%) 100%);
+}
+
+[data-theme="neon"] {
+  --bg-gradient: linear-gradient(135deg, hsl(260, 50%, 5%) 0%, hsl(280, 60%, 8%) 100%);
+  --card-bg: hsla(260, 45%, 8%, 0.75);
+  --card-border: hsla(280, 80%, 35%, 0.4);
+  --text-primary: hsl(280, 100%, 96%);
+  --text-secondary: hsl(280, 50%, 82%);
+  --primary-gradient: linear-gradient(135deg, hsl(280, 100%, 65%) 0%, hsl(190, 100%, 50%) 100%);
 }
 
 * {
@@ -26,6 +44,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.5;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .app-container {
@@ -483,8 +502,6 @@ textarea:focus {
     font-size: 0.75rem;
   }
 }
-
-
 
 /* 联系方式双二维码区域 */
 .contact-qr-container {
