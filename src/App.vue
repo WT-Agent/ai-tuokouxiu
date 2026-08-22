@@ -157,8 +157,10 @@ import UserTicker from './components/UserTicker.vue';
 import FissionModal from './components/FissionModal.vue';
 import NomadsShowcase from './components/NomadsShowcase.vue';
 import appConfig from './config.json';
-import weixinImg from '../asset/weixin.png';
-import dingtalkImg from '../asset/dingtalk.png';
+
+const CDN_ASSET_BASE = 'https://ai.wuxian.xyz/assets';
+const weixinImg = `${CDN_ASSET_BASE}/weixin.png`;
+const dingtalkImg = `${CDN_ASSET_BASE}/dingtalk.png`;
 
 onMounted(() => {
   const savedTheme = localStorage.getItem('portal_theme') || 'dark';
